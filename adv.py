@@ -135,3 +135,4 @@ while True:
 # Passed Ok 987
 # Passed Ok 997
 # Passed Ok 998
+# Passed Ok 998 all 500 rooms but requires Crtl+c to end and return to terminal
