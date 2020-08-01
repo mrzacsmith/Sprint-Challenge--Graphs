@@ -2,9 +2,7 @@ from room import Room
 from player import Player
 from world import World
 
-import util from Graph
-import Queue
-import Stack
+from util import Graph, Queue, Stack
 import random
 from ast import literal_eval
 
