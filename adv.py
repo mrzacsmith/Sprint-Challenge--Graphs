@@ -85,12 +85,22 @@ while len(visited_rooms) < len(world.rooms):
     # add current_room to set
     visited_rooms.add(player.current_room)
 
+    # if path > 0, generate random and give that step
+    # add path(step) to paths
+    # use player.travel path(step)
+    # run traversal path and append path(step)
     if len(path) > 0:
         step = random.randint(0, len(path) - 1)
         paths.push(path[step])
         player.travel(path[step])
-        traversal_path.append(path[move])
-
+        traversal_path.append(path[step])
+    # otherwise, assume the end and pop the path(step)
+    # use shortest_path with travel
+    # run traversal path and append the shortest step
+    else:
+        end = paths.pop()
+        player.travel(shortest_path(end))
+        traversal_path.append(shortest_path(end))
 
 # TRAVERSAL TEST - DO NOT MODIFY
 visited_rooms = set()
