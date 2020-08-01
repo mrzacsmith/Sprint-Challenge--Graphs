@@ -82,8 +82,15 @@ while len(visited_rooms) < len(world.rooms):
     for exit in exits:
         if exit is not None and player.current_room.get_room_in_direction(exit) not in visited_rooms:
             path.append(exit)
-
+    # add current_room to set
     visited_rooms.add(player.current_room)
+
+    if len(path) > 0:
+        step = random.randint(0, len(path) - 1)
+        paths.push(path[step])
+        player.travel(path[step])
+        traversal_path.append(path[move])
+
 
 # TRAVERSAL TEST - DO NOT MODIFY
 visited_rooms = set()
