@@ -2,7 +2,7 @@ from room import Room
 from player import Player
 from world import World
 
-from util import Graph, Queue, Stack
+# from util import Graph, Queue, Stack
 import random
 from ast import literal_eval
 
@@ -30,12 +30,57 @@ player = Player(world.starting_room)
 # traversal_path = ['n', 'n']
 traversal_path = []
 
-visited_rooms = {}
-path = []
-# reverse_direction allows us to go backwards
-reverse_direction = {'n': 's', 's': 'n', 'e': 'w', 'w': 'e'}
+# -----------------------------------
+# visited_rooms = {}
+# path = []
+# # reverse_direction allows us to go backwards
+# reverse_direction = {'n': 's', 's': 'n', 'e': 'w', 'w': 'e'}
 
-visited_rooms[player.current_room.id] = player.current_room.get_exits
+# visited_rooms[player.current_room.id] = player.current_room.get_exits
+# -----------------------------------
+
+# add simple stack
+
+
+class Stack():
+    def __init__(self):
+        self.stack = []
+
+    def push(self, value):
+        self.stack.append(value)
+
+    def pop(self):
+        if self.size() > 0:
+            return self.stack.pop()
+        else:
+            return None
+
+    def size(self):
+        return len(self.stack)
+
+
+paths = Stack()
+visited_rooms = set()
+
+
+def shortest_path(direction):
+    if direction == 'n':
+        return 's'
+    if direction == 's':
+        return 'n'
+    if direction == 'e':
+        return 'w'
+    if direction == 'w':
+        return 'e'
+
+
+while len(visited_rooms) < len(world.rooms):
+    exits = player.current_room.get_exits()
+    path = []
+
+    for exit in exits:
+        if exit != None and player.current_room.get_room_in_direction(exit) not in visited_rooms:
+            path.append(exit)
 
 
 # TRAVERSAL TEST - DO NOT MODIFY
