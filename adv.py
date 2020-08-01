@@ -2,7 +2,7 @@ from room import Room
 from player import Player
 from world import World
 
-# from util import Graph, Queue, Stack
+# from link-list import Graph, Queue, Stack
 import random
 from ast import literal_eval
 
@@ -78,10 +78,12 @@ while len(visited_rooms) < len(world.rooms):
     exits = player.current_room.get_exits()
     path = []
 
+    # check to see if the exit already is in exits
     for exit in exits:
-        if exit != None and player.current_room.get_room_in_direction(exit) not in visited_rooms:
+        if exit is not None and player.current_room.get_room_in_direction(exit) not in visited_rooms:
             path.append(exit)
 
+    visited_rooms.add(player.current_room)
 
 # TRAVERSAL TEST - DO NOT MODIFY
 visited_rooms = set()
