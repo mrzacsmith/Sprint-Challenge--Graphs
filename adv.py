@@ -2,6 +2,9 @@ from room import Room
 from player import Player
 from world import World
 
+import util from Graph
+import Queue
+import Stack
 import random
 from ast import literal_eval
 
@@ -33,6 +36,8 @@ visited_rooms = {}
 path = []
 # reverse_direction allows us to go backwards
 reverse_direction = {'n': 's', 's': 'n', 'e': 'w', 'w': 'e'}
+
+visited_rooms[player.current_room.id] = player.current_room.get_exits
 
 
 # TRAVERSAL TEST - DO NOT MODIFY
